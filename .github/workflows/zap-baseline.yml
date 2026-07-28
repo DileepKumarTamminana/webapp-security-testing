@@ -55,7 +55,7 @@ jobs:
       # named by `artifact_name`, so no separate upload-artifact step is needed
       # (a second step with the same name would 409 under upload-artifact@v4).
       - name: Run OWASP ZAP Baseline Scan
-        uses: zaproxy/action-baseline@v0.12.0
+        uses: zaproxy/action-baseline@v0.15.0
         with:
           target: ${{ env.TARGET_URL }}
           rules_file_name: ".zap/rules.tsv"
