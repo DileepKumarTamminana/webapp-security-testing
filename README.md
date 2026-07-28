@@ -75,13 +75,14 @@ You can reproduce the same baseline scan locally using Docker — no installatio
 
 ```bash
 # Pull the official OWASP ZAP stable image
-docker pull zaproxy/zap-stable
+docker pull ghcr.io/zaproxy/zaproxy:stable
 
-# Run a baseline scan against an authorized target (example: a local Juice Shop instance)
-docker run --rm -v $(pwd)/reports:/zap/wrk/:rw \
-  -t zaproxy/zap-stable zap-baseline.py \
+# Run a baseline scan against an authorized target (example: OWASP Juice Shop).
+# Mount .zap into /zap/wrk so the rules.tsv tuning file is available; the
+# report is written there too.
+docker run --rm -v "$(pwd)/.zap:/zap/wrk/:rw" \
+  ghcr.io/zaproxy/zaproxy:stable zap-baseline.py \
   -t https://demo.owasp-juice.shop \
-  -g gen.conf \
   -r zap-baseline-report.html \
   -c rules.tsv
 ```

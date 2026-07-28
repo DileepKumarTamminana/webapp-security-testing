@@ -27,7 +27,7 @@ Repo → **Actions** tab → **ZAP Baseline** workflow → **Run workflow**:
 - Optionally set `target_url` (defaults to the Juice Shop demo instance)
 - The HTML report is uploaded as a build **artifact**
 
-The workflow is **manual-trigger only** (`workflow_dispatch`) plus a weekly schedule, so it never scans a target without your action.
+The workflow runs on **manual dispatch** (`workflow_dispatch`) and on a **weekly schedule** (Mondays 06:00 UTC). On the scheduled run it scans the default Juice Shop demo target — remove the `schedule:` trigger if you want on-demand runs only.
 
 ## Documentation
 - `docs/methodology.md` — the testing methodology (recon → mapping → automated scan → manual testing per OWASP Top 10 → reporting)
