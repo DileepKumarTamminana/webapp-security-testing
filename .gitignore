@@ -1,0 +1,19 @@
+# ZAP / DAST scan outputs and reports
+reports/
+*.html
+!docs/**/*.html
+report_html.html
+report_md.md
+report_json.json
+zap-baseline-report.*
+zap.out
+zap_scan.log
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Environment / secrets
+.env

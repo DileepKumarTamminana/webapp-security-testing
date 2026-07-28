@@ -1,0 +1,27 @@
+# OWASP ZAP Baseline Scan - Rule Configuration
+#
+# Format (tab-separated): <rule-id>	<action>	<url-regex (optional)>
+#
+# rule-id : the numeric ZAP alert/plugin ID for a given check
+#           (see https://www.zaproxy.org/docs/alerts/ for the full list)
+# action  : how the baseline scan should treat a match for this rule
+#             WARN   - report the finding but do not fail the CI job
+#             IGNORE - suppress the finding entirely (accepted risk / known false positive)
+#             FAIL   - report the finding AND fail the CI job (build breaker)
+# url-regex (optional): restrict the rule to URLs matching this pattern
+#
+# Any rule ID not listed here uses ZAP's default baseline behavior (WARN).
+#
+# Example entries (tune these for your own authorized target):
+
+# 10096: Timestamp Disclosure - suppressed as a known low-risk false positive
+#        on Juice Shop's static asset build timestamps.
+10096	IGNORE
+
+# 40012: Cross Site Scripting (Reflected) - treated as a hard failure so any
+#        regression is caught immediately in CI rather than just logged.
+40012	FAIL
+
+# 10202: Absence of Anti-CSRF Tokens - flagged for manual review but does not
+#        block the pipeline on its own.
+10202	WARN
